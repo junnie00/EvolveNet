@@ -1,0 +1,4 @@
+datasets==4.8.5
+huggingface-hub==0.36.2
+openai==2.44.0
+PyYAML==6.0.3

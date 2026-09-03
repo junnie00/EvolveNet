@@ -1,0 +1,37 @@
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+config.local.yaml
+
+# Generated experiment state
+logs/
+run/
+runs/
+results/
+candidates/
+splits/
+
+# External benchmarks and large artifacts
+data/
+datasets/
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.csv
+*.jsonl
+*.sqlite
+*.db
+*.png
+*.jpg
+*.jpeg
+*.pdf
+paper/

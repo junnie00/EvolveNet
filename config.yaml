@@ -1,0 +1,15 @@
+# Safe offline plumbing configuration. Copy to config.local.yaml for real runs.
+llm:
+  provider: mock
+  base_url: https://api.openai.com/v1
+  api_key_env: OPENAI_API_KEY
+  solver_model: gpt-4o-mini
+  controller_model: gpt-4o
+  temperature: 0.0
+  request_timeout: 120
+  thinking_style: none
+  reasoning_effort: high
+dataset:
+  name: demo
+  db_id: demo
+output_dir: runs
