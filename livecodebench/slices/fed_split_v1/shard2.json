@@ -1,0 +1,106 @@
+{
+ "name": "shard2",
+ "definition": "fed shard client2 = hard x20, seed0",
+ "items": [
+  {
+   "qid": "abc391_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc398_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc194_c",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc193_b",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc391_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc193_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc190_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc393_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc399_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc390_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc392_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc396_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc190_c",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc195_b",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc389_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "name": "val20",
+ "definition": "fed val: easy3+medium3+hard14, seed0",
+ "items": [
+  {
+   "qid": "abc390_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc395_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc391_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc390_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc399_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc399_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc192_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc396_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc395_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc390_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc195_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc192_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc196_c",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc389_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc393_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc389_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  }
+ ]
+}

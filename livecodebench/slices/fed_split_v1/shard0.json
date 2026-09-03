@@ -1,0 +1,106 @@
+{
+ "name": "shard0",
+ "definition": "fed shard client0 = easy x20, seed0",
+ "items": [
+  {
+   "qid": "abc399_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc389_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc390_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc387_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc396_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc392_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc400_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc400_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc393_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc398_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc387_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc395_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc391_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc392_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc389_a",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc396_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  }
+ ]
+}

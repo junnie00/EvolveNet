@@ -1,0 +1,16 @@
+{
+  "seed": 0,
+  "index_source": "dev.json",
+  "index_source_sha256": "630272f2b1c44d8cef2c3b246f623355cf0bbc1e832c81061df895530dfc2f06",
+  "indexing": "Each pair is [db_id, zero-based position among that database's records in dev.json].",
+  "clients": {
+    "0": ["card_games"],
+    "1": ["california_schools"],
+    "2": ["formula_1"],
+    "3": ["toxicology"],
+    "4": ["debit_card_specializing", "superhero", "student_club"]
+  },
+  "train": 100,
+  "val": 100,
+  "test": 150
+}

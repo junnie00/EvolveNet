@@ -1,0 +1,28 @@
+{
+  "seed": 0,
+  "dataset_revision": "4416080ac5cb80bdf7576aefb8f9a0b4d5426a44",
+  "home_libs": {
+    "0": "Pandas",
+    "1": "Numpy",
+    "2": "Matplotlib",
+    "3": "Sklearn",
+    "4": "Scipy"
+  },
+  "train_per_client": 20,
+  "val_by_lib": {
+    "Pandas": 33,
+    "Numpy": 23,
+    "Matplotlib": 15,
+    "Scipy": 10,
+    "Sklearn": 12,
+    "Pytorch": 7
+  },
+  "test_by_lib": {
+    "Pandas": 63,
+    "Numpy": 47,
+    "Matplotlib": 30,
+    "Scipy": 21,
+    "Sklearn": 24,
+    "Pytorch": 15
+  }
+}

@@ -1,0 +1,106 @@
+{
+ "name": "shard1",
+ "definition": "fed shard client1 = medium x20, seed0",
+ "items": [
+  {
+   "qid": "abc396_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc398_b",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc392_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc392_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc391_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc395_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc390_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc400_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc396_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_b",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc387_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc400_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc194_a",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc191_a",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc398_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc195_a",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc389_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  }
+ ]
+}

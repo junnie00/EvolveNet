@@ -9,9 +9,9 @@ not fine-tuned.
 ## Release scope
 
 This repository contains the implementation for BIRD, DS-1000, LiveCodeBench, and SWE-bench Verified,
-together with the final and baseline harness programs selected in the reported runs. It intentionally
-excludes benchmark data, experiment split files, model replies and caches, logs, result files, model
-weights, Docker images, figures, and manuscript files.
+together with the final and baseline harness programs and the ID-only splits used in the reported runs.
+It intentionally excludes benchmark question content, reference answers, model replies and caches, logs,
+result files, model weights, Docker images, figures, and manuscript files.
 
 ```text
 fedkit/                         shared federated loop, adapters, aggregation and evaluation
@@ -130,87 +130,162 @@ and configure an absolute directory containing
 ```
 
 Then set `dataset.name: bird` and `dataset.bird_root: /absolute/path/to/bird-dev` in
-`config.local.yaml`. If a slice was indexed against another question file, set `BIRD_DEV_FILE` to that
-filename; the default is `dev.json`.
+`config.local.yaml`. The released BIRD splits are indexed against `dev.json`; its expected SHA-256 is
+recorded in `reference_examples/text_to_sql/slices/fed_split_v1/meta.json` and can be checked with:
+
+```bash
+sha256sum /absolute/path/to/bird-dev/dev.json
+# 630272f2b1c44d8cef2c3b246f623355cf0bbc1e832c81061df895530dfc2f06
+```
 
 ## 4. Prepare split files
 
-Experiment splits are deliberately external to this code-only release. The accepted JSON formats are:
+The fixed seed-0 splits and client shards used for the reported results are included. They contain only
+public benchmark identifiers and routing labels, not questions, answers, model outputs, or evaluation
+results:
 
-```jsonc
-// DS-1000: a list of problem IDs
-["0", "1", "2"]
+| Benchmark | Client training shards | Full train / validation / held-out test |
+|---|---|---|
+| BIRD | `reference_examples/text_to_sql/slices/fed_split_v1/shard{0..4}.json` | `train100.json` / `val100.json` / `test150.json` |
+| DS-1000 | `ds1000/slices/fed_split_v1/shard{0..4}.json` | `train100.json` / `val100.json` / `test200.json` |
+| LiveCodeBench | `livecodebench/slices/fed_split_v1/shard{0..2}.json` | `train60.json` / `val20.json` / `test30.json` |
+| SWE-bench Verified | `swe/slices/fed_split_v1/shard{0..4}.json` | `train30.json` / `val10.json` / `test40.json` |
 
-// LiveCodeBench: qid plus the routing label used by scoped aggregation
-{"items": [{"qid": "abc123_a", "difficulty": "hard"}]}
+BIRD entries are `[db_id, index]` pairs, where `index` is the zero-based position among that database's
+records in the pinned `dev.json`. For portability, the released `test150.json` was re-indexed from the
+experiment's Mini-Dev ordering to the same 150 question identities in full `dev.json`; sample membership
+is unchanged. DS-1000 and SWE-bench files are ID lists. LiveCodeBench records contain `qid`, `difficulty`,
+and `testtype`, because scoped aggregation uses the difficulty label.
 
-// SWE-bench Verified: a list of instance IDs
-["astropy__astropy-12907"]
-
-// BIRD: each pair is [database ID, zero-based index in BIRD_DEV_FILE]
-{"cross": [["california_schools", 0]]}
-```
-
-For DS-1000, LiveCodeBench, and SWE-bench, create deterministic client shards with:
-
-```bash
-python -m fedkit.shard \
-  --domain ds1000 --slice /path/to/train.json \
-  --clients 5 --seed 0 --out runs/shards
-```
-
-`--domain` accepts `ds1000`, `lcb`, or `swe`. Create BIRD shards with its format-aware command:
-
-```bash
-python -m reference_examples.text_to_sql.fed.shard \
-  --cross-set /path/to/bird-train.json \
-  --clients 5 --seed 0 --out runs/bird-shards
-```
+Use the checked-in `shard*.json` files for exact replication. `fedkit.shard` and the BIRD-specific
+`reference_examples.text_to_sql.fed.shard` command remain available for constructing new experiments,
+but running them is not part of reproducing the reported split.
 
 ## 5. Run EvolveNet
 
-Run the shared loop on DS-1000, LiveCodeBench, or SWE-bench:
+The following commands reproduce the reported evolution configurations. They assume the environment and
+credentials from Sections 1--3 are already active.
+
+BIRD and DS-1000 each ran as one three-round job:
 
 ```bash
-python -m fedkit.fed_loop \
-  --domain ds1000 --shards runs/shards \
-  --train /path/to/train.json --val /path/to/validation.json \
-  --run-name my_run --rounds 3 --local-rounds 1 --group 1 \
-  --specialist --merge-variant scoped --model your-claude-code-model-id
-```
-
-The comparison settings use the same command with `--aggregate select-best`, `--aggregate route`,
-`--merge-variant global-only`, or `--rounds 1 --local-rounds 3`.
-
-Evaluate a released harness on an explicit split:
-
-```bash
-python -m fedkit.evaluate \
-  --domain ds1000 --slice /path/to/test.json \
-  --harness fedglobal_dsmain1_r3 --out runs/ds1000-test.json
-```
-
-BIRD uses its original loop:
-
-```bash
+PYTHONHASHSEED=0 BIRD_DEV_FILE=dev.json \
 python -m reference_examples.text_to_sql.fed.fed_loop \
-  --shards /path/to/bird-shards --run-name bird_run \
-  --rounds 3 --local-rounds 1 --group 1 \
-  --specialist --merge-variant scoped --model your-claude-code-model-id
+  --shards reference_examples/text_to_sql/slices/fed_split_v1 \
+  --val reference_examples/text_to_sql/slices/fed_split_v1/val100.json \
+  --run-name main3 --rounds 3 --local-rounds 1 --group 1 \
+  --initial-harness bare --aggregate merge --specialist --supervised \
+  --merge-variant scoped --model deepseek-v4-flash \
+  --propose-timeout 2700 --merge-timeout 2700 --solve-timeout 180 \
+  --budget-lines 150 --max-parallel-clients 5
+
+PYTHONHASHSEED=0 \
+python -m fedkit.fed_loop \
+  --domain ds1000 --shards ds1000/slices/fed_split_v1 \
+  --train ds1000/slices/fed_split_v1/train100.json \
+  --val ds1000/slices/fed_split_v1/val100.json \
+  --run-name dsmain1 --rounds 3 --local-rounds 1 --group 1 \
+  --initial-harness bare --aggregate merge --specialist \
+  --merge-variant scoped --model deepseek-v4-flash \
+  --propose-timeout 2700 --merge-timeout 2700 --solve-timeout 60 \
+  --budget-lines 150 --max-parallel-clients 5
 ```
+
+LiveCodeBench and SWE-bench were run for two rounds and then resumed for the third round. Keeping the two
+stages preserves the released harness names and lineage:
+
+```bash
+PYTHONHASHSEED=0 python -m fedkit.fed_loop \
+  --domain lcb --shards livecodebench/slices/fed_split_v1 \
+  --train livecodebench/slices/fed_split_v1/train60.json \
+  --val livecodebench/slices/fed_split_v1/val20.json \
+  --run-name lcbmain1 --rounds 2 --local-rounds 1 --group 1 \
+  --initial-harness bare --aggregate merge --specialist \
+  --merge-variant scoped --model deepseek-v4-flash \
+  --propose-timeout 2700 --merge-timeout 2700 --solve-timeout 300 \
+  --budget-lines 150 --max-parallel-clients 5
+
+PYTHONHASHSEED=0 python -m fedkit.fed_loop \
+  --domain lcb --shards livecodebench/slices/fed_split_v1 \
+  --train livecodebench/slices/fed_split_v1/train60.json \
+  --val livecodebench/slices/fed_split_v1/val20.json \
+  --run-name lcbmain1r3 --rounds 1 --local-rounds 1 --group 1 \
+  --initial-harness fedglobal_lcbmain1_r2 --aggregate merge --specialist \
+  --merge-variant scoped --model deepseek-v4-flash \
+  --propose-timeout 2700 --merge-timeout 2700 --solve-timeout 300 \
+  --budget-lines 150 --max-parallel-clients 5
+
+PYTHONHASHSEED=0 python -m fedkit.fed_loop \
+  --domain swe --shards swe/slices/fed_split_v1 \
+  --train swe/slices/fed_split_v1/train30.json \
+  --val swe/slices/fed_split_v1/val10.json \
+  --run-name swemain1 --rounds 2 --local-rounds 1 --group 1 \
+  --initial-harness bare --aggregate merge --specialist \
+  --merge-variant scoped --model deepseek-v4-flash \
+  --propose-timeout 2700 --merge-timeout 2700 --solve-timeout 1800 \
+  --budget-lines 150 --max-parallel-clients 5
+
+PYTHONHASHSEED=0 python -m fedkit.fed_loop \
+  --domain swe --shards swe/slices/fed_split_v1 \
+  --train swe/slices/fed_split_v1/train30.json \
+  --val swe/slices/fed_split_v1/val10.json \
+  --run-name swemain1r3 --rounds 1 --local-rounds 1 --group 1 \
+  --initial-harness fedglobal_swemain1_r2 --aggregate merge --specialist \
+  --merge-variant scoped --model deepseek-v4-flash \
+  --propose-timeout 2700 --merge-timeout 2700 --solve-timeout 1800 \
+  --budget-lines 150 --max-parallel-clients 5
+```
+
+To evaluate the released final harnesses without re-running evolution:
+
+```bash
+mkdir -p runs
+
+PYTHONHASHSEED=0 BIRD_DEV_FILE=dev.json \
+python -m reference_examples.text_to_sql.fed.evaluate \
+  --slice reference_examples/text_to_sql/slices/fed_split_v1/test150.json \
+  --harness fedglobal_main3_r3_retry --run-name paper_bird_test \
+  --solve-timeout 180 --workers 5
+
+PYTHONHASHSEED=0 \
+python -m fedkit.evaluate \
+  --domain ds1000 --slice ds1000/slices/fed_split_v1/test200.json \
+  --harness fedglobal_dsmain1_r3 --out runs/ds1000-test.json \
+  --solve-timeout 60
+
+PYTHONHASHSEED=0 \
+python -m fedkit.evaluate \
+  --domain lcb --slice livecodebench/slices/fed_split_v1/test30.json \
+  --harness fedglobal_lcbmain1r3_r1 --out runs/lcb-test.json \
+  --solve-timeout 300
+
+PYTHONHASHSEED=0 \
+python -m fedkit.evaluate \
+  --domain swe --slice swe/slices/fed_split_v1/test40.json \
+  --harness fedglobal_swemain1r3_r1 --out runs/swe-test.json \
+  --solve-timeout 1800
+```
+
+The SWE-bench adapter runs each released instance in its benchmark Docker image and grades the resulting
+patch with the official SWE-bench evaluator. The other adapters execute their benchmark-provided tests or
+gold query evaluator. Generated logs, caches, patches, and result JSON remain under ignored paths.
+
+The comparison settings use the same evolution commands with `--aggregate select-best`,
+`--aggregate route`, `--merge-variant global-only`, or `--rounds 1 --local-rounds 3` as appropriate.
 
 ## Reproducibility boundary
 
-This repository is sufficient to inspect the method, run it on user-supplied splits, and evaluate the
-released harnesses after installing the stated public benchmarks and model runtime. Dataset revisions and
-Python packages are pinned to prevent silent dependency drift.
+The repository now fixes the sample identities, client assignments, validation gates, dataset revisions,
+run arguments, and final harness source. This is sufficient to run the released artifacts on the exact
+reported splits after installing the public benchmark data and configuring the model endpoint.
 
-It is not, by itself, sufficient to reproduce the paper's exact numerical tables: the requested
-code-only release excludes the paper's split JSON files and cached model replies, and LLM-driven evolution
-remains stochastic even at temperature zero. Exact score reproduction requires those same split
-definitions, the same model endpoint/version, and either the original response cache or new repeated runs
-with uncertainty reported. The checked-in final harness files are deterministic artifacts from the
-reported runs; regenerating an identical harness is not guaranteed.
+The response caches are intentionally not published because they contain model outputs derived from
+benchmark questions. Consequently, an external API service can still return different samples or change
+the implementation behind the same model name; LLM-driven evolution can vary even at temperature zero.
+Recreating a byte-identical evolved harness or bit-identical score therefore additionally requires the
+original model service version and response cache. For a fresh reproduction, keep the endpoint and model
+settings fixed, run the released split, and report repeated-run uncertainty where the service is
+nondeterministic.
 
 Source-level checks that do not download data or call an API:
 

@@ -1,0 +1,23 @@
+{
+ "clients": {
+  "0": [
+   "django"
+  ],
+  "1": [
+   "sphinx-doc"
+  ],
+  "2": [
+   "sympy"
+  ],
+  "3": [
+   "astropy"
+  ],
+  "4": [
+   "pytest-dev",
+   "pylint-dev"
+  ]
+ },
+ "train": 30,
+ "val": 10,
+ "test": "40 = 30 home + 10 unseen-repo"
+}

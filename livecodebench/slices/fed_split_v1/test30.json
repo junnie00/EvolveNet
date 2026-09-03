@@ -1,0 +1,156 @@
+{
+ "name": "test30",
+ "definition": "fed test: easy3+medium3+hard24, seed0",
+ "items": [
+  {
+   "qid": "abc399_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc393_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_b",
+   "difficulty": "easy",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc388_c",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc394_d",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc192_a",
+   "difficulty": "medium",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc390_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc194_b",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc400_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc399_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc191_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc194_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc398_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc193_a",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc191_c",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc393_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc396_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc192_b",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc398_g",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc391_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc395_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc400_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc195_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc190_a",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc392_f",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "abc397_e",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc196_b",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc194_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc195_c",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  },
+  {
+   "qid": "arc196_d",
+   "difficulty": "hard",
+   "testtype": "stdin"
+  }
+ ]
+}
