@@ -152,10 +152,10 @@ results:
 | SWE-bench Verified | `swe/slices/fed_split_v1/shard{0..4}.json` | `train30.json` / `val10.json` / `test40.json` |
 
 BIRD entries are `[db_id, index]` pairs, where `index` is the zero-based position among that database's
-records in the pinned `dev.json`. For portability, the released `test150.json` was re-indexed from the
-experiment's Mini-Dev ordering to the same 150 question identities in full `dev.json`; sample membership
-is unchanged. DS-1000 and SWE-bench files are ID lists. LiveCodeBench records contain `qid`, `difficulty`,
-and `testtype`, because scoped aggregation uses the difficulty label.
+records in the pinned `dev.json`. The released `test150.json` is the exact 150-question held-out set used
+for the paper result, re-indexed against full `dev.json`. Its ordered `question_id` checksum is recorded
+in the adjacent `meta.json`. DS-1000 and SWE-bench files are ID lists. LiveCodeBench records contain
+`qid`, `difficulty`, and `testtype`, because scoped aggregation uses the difficulty label.
 
 Use the checked-in `shard*.json` files for exact replication. `fedkit.shard` and the BIRD-specific
 `reference_examples.text_to_sql.fed.shard` command remain available for constructing new experiments,
